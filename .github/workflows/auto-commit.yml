@@ -16,10 +16,12 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}  # ✅ GH_PAT → GITHUB_TOKEN 으로 교체
           persist-credentials: false
 
-      - name: Commit recommend.json changes
-        run: |
-          git config --global user.name "sanghyun412"
-          git config --global user.email "sanghyun@example.com"
-          git add src/data/recommend.json
-          git commit -m "auto: update recommend.json" || echo "No changes to commit"
-          git push
+- name: Commit recommend.json changes
+  run: |
+    git config --global user.name "sanghyun412"
+    git config --global user.email "sanghyun@example.com"
+    git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/sanghyun412/jolapp-auto.git
+    git add src/data/recommend.json
+    git commit -m "auto: update recommend.json" || echo "No changes to commit"
+    git push
+
